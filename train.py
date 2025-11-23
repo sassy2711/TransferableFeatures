@@ -467,7 +467,7 @@ import random
 # -------- config --------
 env_id = "FrozenLake-v1"
 is_slippery = False
-num_episodes = 15000
+num_episodes = 2000
 max_steps_per_episode = 100
 gamma = 0.99
 alpha_psi = 0.15
@@ -541,7 +541,7 @@ video_folder = "./videos"
 if not os.path.exists(video_folder):
     os.makedirs(video_folder)
 
-record_interval = 100   # record every 100 episodes
+record_interval = 1000   # record every 100 episodes
 
 print("📹 Videos will be saved to:", os.path.abspath(video_folder))
 print("   Recording every", record_interval, "episodes")
@@ -576,7 +576,7 @@ s = int(obs[0]) if isinstance(obs, (tuple, list)) else int(obs)
 # -------- tables --------
 S = env.observation_space.n
 A = env.action_space.n
-d = S * A * S
+d = S * A 
 
 psi = torch.zeros((S, A, d), dtype=torch.float32)
 w = torch.zeros((d,), dtype=torch.float32)
@@ -588,7 +588,7 @@ with tqdm(total=num_episodes, desc="Episodes", ncols=110) as epbar:
         # epsilon schedule:
         # - linearly decay from 1.0 to 0.01 over the first 14000 episodes
         # - then keep it fixed at 0.01 for the last 1000 episodes
-        decay_episodes = 14000
+        decay_episodes = 1800
         if episode <= decay_episodes:
             frac = (episode - 1) / max(1, decay_episodes - 1)
             epsilon = epsilon_start + frac * (epsilon_end - epsilon_start)
@@ -623,7 +623,7 @@ with tqdm(total=num_episodes, desc="Episodes", ncols=110) as epbar:
             a_dash = int(torch.argmax(q_vals_next).item())
 
             # one-hot φ
-            idx = int(s) * (A * S) + int(a) * S + int(s_dash)
+            idx = int(s) * A + int(a) 
             phi = torch.zeros(d)
             phi[idx] = 1.0
 
