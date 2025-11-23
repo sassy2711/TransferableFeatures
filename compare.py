@@ -1,6 +1,6 @@
 import torch
 
-path1 = "psi_with_decorr.pth"
+path1 = "psi_without_decorr(less_episodes).pth"
 path2 = "psi_without_decorr.pth"
 
 # path1 = "w_with_decorr_goal6.pth"

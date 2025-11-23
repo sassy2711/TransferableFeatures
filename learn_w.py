@@ -87,10 +87,7 @@ with tqdm(total=num_episodes, desc="Learning w (fixed psi)", ncols=110) as epbar
 
             # epsilon-greedy action using fixed psi and current w
             q_vals_curr = torch.matmul(psi[s], w)   # shape (A,)
-            if random.random() < epsilon:
-                a = random.randrange(A)
-            else:
-                a = int(torch.argmax(q_vals_curr))
+            a = random.randrange(A)
 
             step_result = env.step(a)
             if len(step_result) == 5:
