@@ -1,8 +1,8 @@
 import torch
 
 # paths to your saved psi tensors
-path1 = "psi1.pth"
-path2 = "psi2.pth"
+path1 = "psi_wth.pth"
+path2 = "psi_without.pth"
 
 # load them
 psi1 = torch.load(path1)
