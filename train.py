@@ -225,7 +225,7 @@ alpha_psi = 0.15
 alpha_w = 0.05
 
 # decorrelation strength  (x = η/α)
-x = 0.5     # <<--- NEW HYPERPARAMETER
+x = 10    # <<--- NEW HYPERPARAMETER
 
 # epsilon schedule
 epsilon_start = 1.0
