@@ -1,21 +1,26 @@
 import torch
 
-# paths to your saved psi tensors
-path1 = "psi_wth.pth"
-path2 = "psi_without.pth"
+path1 = "psi_with_decorr.pth"
+path2 = "psi_without_decorr.pth"
 
-# load them
-psi1 = torch.load(path1)
-psi2 = torch.load(path2)
+# path1 = "w_with_decorr_goal6.pth"
+# path2 = "w_without_decorr_goal6.pth"
 
-# ensure they are tensors
-psi1 = psi1.float()
-psi2 = psi2.float()
+psi1 = torch.load(path1).float()
+psi2 = torch.load(path2).float()
 
-# check shape
 assert psi1.shape == psi2.shape, f"Shape mismatch: {psi1.shape} vs {psi2.shape}"
 
-# compute element-wise mean squared difference
-mse = torch.mean((psi1 - psi2) ** 2)
+# element-wise absolute difference and sum
+abs_diff_sum = torch.sum(torch.abs(psi1 - psi2))
 
-print("Mean squared difference between ψ1 and ψ2:", mse.item())
+print("Sum of absolute differences:", abs_diff_sum.item())
+
+max_diff = (psi1 - psi2).abs().max().item()
+min_diff = (psi1 - psi2).abs().min().item()
+
+print("Max absolute difference:", max_diff)
+print("Min absolute difference:", min_diff)
+
+num_nonzero = torch.count_nonzero(psi1 - psi2).item()
+print("Number of elements that differ:", num_nonzero)

@@ -21,7 +21,7 @@ custom_map = [
 #  4  5  6  7
 #  8  9 10 11
 # 12 13 14 15
-TASK_GOAL_STATE = 9
+TASK_GOAL_STATE = 6
 
 
 class TaskRewardWrapper(gym.Wrapper):
@@ -64,8 +64,8 @@ def make_env():
 
 def main():
     # ---- load learned SF tables ----
-    psi = torch.load("psi_table_frozenlake.pth")   # shape: (S, A, d)
-    w = torch.load("w_frozenlake.pth")             # shape: (d,)
+    psi = torch.load("psi_with_decorr.pth")   # shape: (S, A, d)
+    w = torch.load("w_with_decorr_goal6.pth")             # shape: (d,)
 
     env = make_env()
     S = env.observation_space.n
