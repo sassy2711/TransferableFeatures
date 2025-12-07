@@ -9,11 +9,11 @@ psi_star_dir = "psi"       # psi*/goal: psi/<goal>.pth
 w_star_dir = "w"           # w*/goal:   w/<goal>.pth
 
 # Shared psi for goal 9, without decorrelation, and its per-goal w's
-psi_without_path = "psi_without_decorr.pth"
+psi_without_path = "psi_without_decorr(less_episodes).pth"
 w_no_dir = "w's_for_psi9_star"   # per-goal w's for psi_without_decorr
 
 # Shared psi for goal 9, with decorrelation, and its per-goal w's
-psi_with_path = "psi_with_decorr.pth"
+psi_with_path = "psi_with_decorr(less_episodes).pth"
 w_with_dir = "w's_for_psi_bar"   # per-goal w's for psi_with_decorr
 
 

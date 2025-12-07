@@ -18,8 +18,8 @@ custom_map = [
 ]
 
 # ---- paths ----
-psi_path = "psi_with_decorr.pth"        # single shared psi (for goal 9, with decorrelation)
-w_folder = "w's_for_psi_bar"            # per-goal w's, named <goal>.pth
+psi_path = "psi_without_decorr(less_episodes).pth"        # single shared psi (for goal 9, with decorrelation)
+w_folder = "w's_for_psi9_star"            # per-goal w's, named <goal>.pth
 
 
 class TaskRewardWrapper(gym.Wrapper):

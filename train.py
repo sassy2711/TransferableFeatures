@@ -372,7 +372,7 @@ with tqdm(total=num_episodes, desc="Episodes", ncols=110) as epbar:
             # ========== FINAL UPDATE: Bellman (no decorrelation) ========
             # ============================================================
 
-            psi[s, a] += alpha_psi * psi_error
+            psi[s, a] += alpha_psi * (psi_error - x * grad_row)
 
             # plain w update (unchanged)
             w[idx] += alpha_w * (r - w[idx])
@@ -396,7 +396,7 @@ with tqdm(total=num_episodes, desc="Episodes", ncols=110) as epbar:
         epbar.update(1)
 
 # save
-torch.save(psi, "psi_without_decorr(less_episodes).pth")
+torch.save(psi, "psi_with_decorr(less_episodes).pth")
 torch.save(w, "w_frozenlake.pth")
 print("\nSaved psi_without_decorr.pth and w_frozenlake.pth")
 print("Videos saved in:", os.path.abspath(video_folder))
